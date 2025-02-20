@@ -78,7 +78,7 @@ def send_email(recipient_email,subscription_preferences,sender_email,sender_pass
 				color: white;
 				border-radius: 8px;
 				padding: 2px;
-				font-size: 10px;
+				font-size: 12px;
 				margin: 2px;
 				padding-left: 4px;
   				padding-right: 4px;
@@ -108,7 +108,7 @@ def send_email(recipient_email,subscription_preferences,sender_email,sender_pass
 			   top: 50%;
 				left: 50%;
 				right: 50%;
-				font-size: 20px;
+				font-size: 18px;
 				width: inherit;
 				padding: 0;
 				margin: 0;
@@ -211,7 +211,7 @@ def send_email(recipient_email,subscription_preferences,sender_email,sender_pass
 			entry_html = entry_html + '<a id="paperTitle" href="' + str(entry.link) + '">' + papertitle + '</a>'
 			
 			# Add tags and version info
-			entry_html = entry_html + tags_html + version_html
+			entry_html = entry_html + '<br>\n\t<b> Tags: </b>' + tags_html + version_html
 
 			# Add authors
 			entry_html = entry_html + '<br>\n\t<b> Authors: </b>' + author_str
