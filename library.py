@@ -35,7 +35,7 @@ class Paper:
 
 def renderer(subscription_preferences):
     # Get a list of subjects and tags from 'subj-list.csv'
-    with open('subj-list.csv', 'r') as f:
+    with open('subject_list.csv', 'r') as f:
         reader = csv.reader(f)
         subjects = list(reader)
 
@@ -55,19 +55,18 @@ def renderer(subscription_preferences):
 
         papers = []
         for entry in entries:
-            common = set([tag.term for tag in entry.tags]) & set(subjects_secondary)
-            if not common:
-                continue
-
             paper = Paper()
-
-            # Get the title
-            paper.title = str(entry.title)
 
             # Get the tags
             # Get the primary tag (note that entry.tags is a list)
             # The API convention, from what I can understand, lists the primary posting as the first tag
             paper.tags = [tag.term for tag in entry.tags]
+            common = set(paper.tags) & set(subjects_secondary)
+            if not common:
+                continue
+
+            # Get the title
+            paper.title = str(entry.title)
 
             # Get the version number
             # Strip the entry.id at 'v' to get the version number
