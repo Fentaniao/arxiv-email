@@ -20,7 +20,7 @@
             line-height: 1.6;
             background-color: #f4f4f4;
             color: #333;
-            padding: 1rem;
+            padding: 0.5rem;
             max-width: 80rem;
             margin: auto;
         }
@@ -72,7 +72,7 @@
             display: inline-block;
             color: white;
             border-radius: 8px;
-            padding: 0.1rem;
+            padding: 0.2rem;
             margin: 0.1rem;
         }
 
@@ -119,7 +119,6 @@
 
         .paper_title a {
             text-decoration: none;
-            color: #2c3e50;
         }
 
         .paper_title a:hover {
@@ -187,16 +186,10 @@
             </p>
 
             <p class="link">
-                <b>Link: </b>
-                <a href="{{ paper.abs_link }}" target="_blank">
-                    Abstract
-                </a>
-                <a href="{{ paper.pdf_link }}" target="_blank">
-                    PDF
-                </a>
-                <a href="{{ paper.html_link }}" target="_blank">
-                    HTML
-                </a>
+                <b>Links: </b>
+                <a href="{{ paper.abs_link }}" target="_blank">Abstract</a> /
+                <a href="{{ paper.pdf_link }}" target="_blank">PDF</a> /
+                <a href="{{ paper.html_link }}" target="_blank">HTML</a>
             </p>
 
         </div>
