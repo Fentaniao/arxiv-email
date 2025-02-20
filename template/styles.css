@@ -27,7 +27,7 @@ a {
 }
 
 /* Banner Styles */
-#banner {
+.banner {
     width: 100%;
     font-size: 18px;
     color: #F4F2F3;
@@ -38,14 +38,14 @@ a {
     margin-bottom: 20px;
 }
 
-#banner h1 {
+.banner h1 {
     width: 75%;
     display: inline-block;
     margin: 10px;
 }
 
 /* Tag Styles */
-#tag, #xlistedtag, #updated {
+.tag {
     display: inline-block;
     color: white;
     border-radius: 8px;
@@ -55,30 +55,24 @@ a {
 }
 
 /* Individual Tag Background Colors */
-#tag {
+.tag_primary {
     background-color: #984447;
 }
 
-#xlistedtag {
+.tag_secondary {
     background-color: #a65094;
 }
 
-#updated {
+.version {
     background-color: #575757;
 }
 
 /* Subject Section Styles */
-#subjectTitle {
+.subject_title {
     font-size: 14px;
     color: #984447;
     text-align: center;
     margin: 10px 0;
-}
-
-/* Subject Text Alignment */
-#subject {
-    text-align: left;
-    margin-left: 10px;
 }
 
 /* Container Styles for Overlay Images */
@@ -113,7 +107,7 @@ a {
 
 /* Responsive Layout Adjustments */
 @media (max-width: 768px) {
-    #banner h1 {
+    .banner h1 {
         font-size: 16px;
     }
 

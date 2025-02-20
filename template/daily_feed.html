@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div id="banner">
+<div class="banner">
     <h1>
         Daily arXiv Feed
     </h1>
@@ -18,10 +18,10 @@
 </div>
 
 <br>
-<div id="body">
+<div class="body">
     {% for subject, papers in papers_subjects.items() %}
     <div>
-        <h2 id="subject_title">
+        <h2 class="subject_title">
             {{ subject }}
         </h2>
         {% for paper in papers %}
@@ -35,15 +35,15 @@
 
             <p class="tags">
                 <b>Tags: </b>
-            <div class="tag_primary">
+            <div class="tag tag_primary">
                 {{ paper.tags[0] }}
             </div>
             {% for tag_secondary in paper.tags[1:] %}
-            <div class="tag_secondary">
+            <div class="tag tag_secondary">
                 {{ tag_secondary }}
             </div>
             {% endfor %}
-            <div class="version">
+            <div class="tag version">
                 v{{ paper.version }}
             </div>
             </p>
