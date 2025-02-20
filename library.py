@@ -55,7 +55,7 @@ def renderer(subscription_preferences):
 
         papers = []
         for entry in entries:
-            common = set(entry.tags) & set(subjects_secondary)
+            common = set([tag.term for tag in entry.tags]) & set(subjects_secondary)
             if not common:
                 continue
 
