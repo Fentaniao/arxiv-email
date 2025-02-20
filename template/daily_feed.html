@@ -5,8 +5,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Daily arXiv Feed</title>
-    <link rel="stylesheet" href="template/styles.css">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+
+        /* Banner Styling */
+        .banner {
+            width: 100%;
+            font-size: 18px;
+            color: #F4F2F3;
+            text-align: center;
+            padding: 10px 0;
+            background-color: #515c5d;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .banner h1 {
+            width: 75%;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .banner h2 {
+            font-size: 1.2em;
+            color: #7f8c8d;
+        }
+
+        /* Text Color Styling */
+        p {
+            color: #2B303A;
+        }
+
+        .colored {
+            color: blue;
+        }
+
+        a {
+            color: #0C7C59;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #1abc9c;
+            text-decoration: underline;
+        }
+
+        /* Tag Styles */
+        .tag {
+            display: inline-block;
+            color: white;
+            border-radius: 8px;
+            padding: 4px;
+            font-size: 16px;
+            margin: 2px;
+        }
+
+        /* Individual Tag Background Colors */
+        .tag_primary {
+            background-color: #984447;
+        }
+
+        .tag_secondary {
+            background-color: #a65094;
+        }
+
+        .version {
+            background-color: #575757;
+        }
+
+        /* Subject Section Styles */
+        .subject_title {
+            font-size: 18px;
+            color: #984447;
+            text-align: center;
+            margin: 10px 0;
+            border-bottom: 2px solid #984447;
+            padding-bottom: 5px;
+        }
+
+        /* Paper Styling */
+        .paper {
+            background-color: white;
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .paper_title {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .paper_title a {
+            text-decoration: none;
+            color: #2c3e50;
+        }
+
+        .paper_title a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Layout Adjustments */
+        @media (max-width: 768px) {
+            .banner h1 {
+                font-size: 16px;
+            }
+
+            .container h1 {
+                font-size: 16px;
+            }
+
+            .paper {
+                padding: 10px;
+                margin: 10px 0;
+            }
+
+            .tag {
+                font-size: 14px;
+                padding: 3px;
+            }
+
+            .subject_title {
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
 <body>
 <div class="banner">
