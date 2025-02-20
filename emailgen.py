@@ -21,11 +21,13 @@ def send_email(recipient_email,subscription_preferences,sender_email,sender_pass
 
 	# Generate HTML for the email
 	html_top = """\
-	<html>
+ 	<!DOCTYPE html>
+	<html lang="en">
 	<head>
 		<style>
 			html{
 				background-color: #F2F3F4;
+            			font-family: Arial, sans-serif;
 			}
 			p{
 				color:#2B303A;
@@ -34,14 +36,14 @@ def send_email(recipient_email,subscription_preferences,sender_email,sender_pass
 				color: blue;
 			}
 			#body {
-				font-size: 14px;
+				font-size: 16px;
 			}
 			#banner{
 				width:100%;
-				font-size:18px;
+				font-size: 18px;
 				color: #F4F2F3;
-				text-align:center;
-				padding:1px;
+				text-align: center;
+				padding: 2px;
 				border-radius: 20px;
 				background-color: #515c5d;
 			}
@@ -64,10 +66,10 @@ def send_email(recipient_email,subscription_preferences,sender_email,sender_pass
 				color: #0C7C59;
 			}
 			#subjectTitle{
-				width:inherit;
-				font-size:14px;
+				width: inherit;
+				font-size: 14px;
 				color : #984447;
-				text-align:center;
+				text-align: center;
 			}
 			#subject{
 				text-align:left;
@@ -78,7 +80,7 @@ def send_email(recipient_email,subscription_preferences,sender_email,sender_pass
 				color: white;
 				border-radius: 8px;
 				padding: 2px;
-				font-size: 12px;
+				font-size: 16px;
 				margin: 2px;
 				padding-left: 4px;
   				padding-right: 4px;
