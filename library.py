@@ -17,11 +17,7 @@ today = date.today()
 # Path Configuration
 # -------------------------------------
 
-log_dir = Path('logs')
-fig_dir = Path('figures')
-page_dir = Path('pages')
 template_dir = Path('template')
-data_dir = Path('data')
 
 
 @dataclass
@@ -35,7 +31,7 @@ class Paper:
     abstract: any = ''
 
 
-def send_email(recipient_email, subscription_preferences, sender_email, sender_password):
+def renderer(subscription_preferences):
     # Get a list of subjects and tags from 'subj-list.csv'
     with open('subj-list.csv', 'r') as f:
         reader = csv.reader(f)
@@ -86,17 +82,6 @@ def send_email(recipient_email, subscription_preferences, sender_email, sender_p
 
         papers_subjects[subj_title] = papers
 
-
-    import smtplib
-    from email.mime.multipart import MIMEMultipart
-    from email.mime.text import MIMEText
-    from email.mime.image import MIMEImage
-
-    msg = MIMEMultipart('alternative')
-    msg['Subject'] = "Daily arXiv Feed: " + str(today.strftime("%B %d, %Y"))
-    msg['From'] = sender_email
-    msg['To'] = recipient_email
-
     # Create the body of the message (an HTML version).
     html = render_html_template(
         template_path=template_dir / "daily_feed.html",
@@ -107,12 +92,20 @@ def send_email(recipient_email, subscription_preferences, sender_email, sender_p
         },
     )
 
-    # print('HTML is :')
-    # print(html)
+    return html
 
-    # ### Uncomment the following lines for testing:
-    # testingpage = open('test.html','w')
-    # testingpage.write(html)
+
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
+
+
+def sender(html, recipient_email, sender_email, sender_password):
+    msg = MIMEMultipart('alternative')
+    msg['Subject'] = "Daily arXiv Feed: " + str(today.strftime("%B %d, %Y"))
+    msg['From'] = sender_email
+    msg['To'] = recipient_email
 
     # Record the MIME types of both parts,text/plain and text/html.
     part2 = MIMEText(html, 'html')

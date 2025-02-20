@@ -21,18 +21,20 @@
             background-color: #f4f4f4;
             color: #333;
             padding: 20px;
+            max-width: 1200px;
+            margin: auto;
         }
 
         /* Banner Styling */
         .banner {
             width: 100%;
-            font-size: 18px;
+            font-size: 20px;
             color: #F4F2F3;
             text-align: center;
-            padding: 10px 0;
+            padding: 20px 0;
             background-color: #515c5d;
             border-radius: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         .banner h1 {
@@ -44,11 +46,13 @@
         .banner h2 {
             font-size: 1.2em;
             color: #7f8c8d;
+            margin-top: 10px;
         }
 
         /* Text Color Styling */
         p {
             color: #2B303A;
+            margin-bottom: 15px;
         }
 
         .colored {
@@ -70,9 +74,9 @@
             display: inline-block;
             color: white;
             border-radius: 8px;
-            padding: 4px;
-            font-size: 16px;
-            margin: 2px;
+            padding: 6px;
+            font-size: 14px;
+            margin: 3px;
         }
 
         /* Individual Tag Background Colors */
@@ -90,27 +94,27 @@
 
         /* Subject Section Styles */
         .subject_title {
-            font-size: 18px;
+            font-size: 22px;
             color: #984447;
             text-align: center;
-            margin: 10px 0;
-            border-bottom: 2px solid #984447;
+            margin: 15px 0;
+            border-bottom: 3px solid #984447;
             padding-bottom: 5px;
         }
 
         /* Paper Styling */
         .paper {
             background-color: white;
-            margin: 15px 0;
-            padding: 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .paper_title {
-            font-size: 1.5em;
+            font-size: 1.8em;
             color: #2c3e50;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .paper_title a {
@@ -125,25 +129,49 @@
         /* Responsive Layout Adjustments */
         @media (max-width: 768px) {
             .banner h1 {
-                font-size: 16px;
-            }
-
-            .container h1 {
-                font-size: 16px;
+                font-size: 18px;
             }
 
             .paper {
-                padding: 10px;
-                margin: 10px 0;
+                padding: 15px;
+                margin: 15px 0;
             }
 
             .tag {
-                font-size: 14px;
-                padding: 3px;
+                font-size: 12px;
+                padding: 4px;
+            }
+
+            .subject_title {
+                font-size: 18px;
+            }
+
+            .paper_title {
+                font-size: 1.4em;
+            }
+        }
+
+        /* Additional Space Adjustments for Mobile */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .banner {
+                padding: 15px 0;
             }
 
             .subject_title {
                 font-size: 16px;
+            }
+
+            .paper_title {
+                font-size: 1.2em;
+            }
+
+            .tag {
+                font-size: 10px;
+                padding: 3px;
             }
         }
     </style>
@@ -158,7 +186,6 @@
     </h2>
 </div>
 
-<br>
 <div class="body">
     {% for subject, papers in papers_subjects.items() %}
     <div>
@@ -169,24 +196,24 @@
         <div class="paper">
             <p class="paper_title">
                 <b>Title: </b>
-                <a href="{{ paper.link }}">
+                <a href="{{ paper.link }}" target="_blank">
                     {{ paper.title }}
                 </a>
             </p>
 
             <p class="tags">
                 <b>Tags: </b>
-            <div class="tag tag_primary">
-                {{ paper.tags[0] }}
-            </div>
-            {% for tag_secondary in paper.tags[1:] %}
-            <div class="tag tag_secondary">
-                {{ tag_secondary }}
-            </div>
-            {% endfor %}
-            <div class="tag version">
-                v{{ paper.version }}
-            </div>
+                <div class="tag tag_primary">
+                    {{ paper.tags[0] }}
+                </div>
+                {% for tag_secondary in paper.tags[1:] %}
+                <div class="tag tag_secondary">
+                    {{ tag_secondary }}
+                </div>
+                {% endfor %}
+                <div class="tag version">
+                    v{{ paper.version }}
+                </div>
             </p>
 
             <p class="authors">
@@ -198,9 +225,6 @@
                 <b>Abstract: </b>
                 {{ paper.abstract }}
             </p>
-
-            <hr>
-
         </div>
         {% endfor %}
     </div>

@@ -10,4 +10,5 @@ if __name__ == "__main__":
     RECIPIENT = os.environ.get("RECIPIENT")
     subscriptions = ["quant-ph", ]
 
-    send_email(RECIPIENT, subscriptions, USER, PASSWORD)
+    HTML = renderer(subscriptions)
+    sender(HTML, RECIPIENT, USER, PASSWORD)
