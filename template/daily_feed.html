@@ -19,42 +19,49 @@
 
 <br>
 <div id="body">
-    {% for paper in papers %}
-    <div class="paper">
-        <p>
-            <b>Title: </b>
-            <a class="paper_title" href="{{ entry.link }}">
-                {{ paper.title }}
-            </a>
-        </p>
+    {% for subject, papers in papers_subjects.item() %}
+    <div>
+        <h2 id="subject_title">
+            {{ subject }}
+        </h2>
+        {% for paper in papers %}
+        <div class="paper">
+            <p class="paper_title">
+                <b>Title: </b>
+                <a href="{{ paper.link }}">
+                    {{ paper.title }}
+                </a>
+            </p>
 
-        <p class="tags">
-            <b>Tags: </b>
-        <div class="tag_primary">
-            {{ paper.tags[0] }}
-        </div>
-        {% for tag_secondary in paper.tags[1:] %}
-        <div class="tag_secondary">
-            {{ tag_secondary }}
+            <p class="tags">
+                <b>Tags: </b>
+            <div class="tag_primary">
+                {{ paper.tags[0] }}
+            </div>
+            {% for tag_secondary in paper.tags[1:] %}
+            <div class="tag_secondary">
+                {{ tag_secondary }}
+            </div>
+            {% endfor %}
+            <div class="version">
+                v{{ paper.version }}
+            </div>
+            </p>
+
+            <p class="authors">
+                <b>Authors: </b>
+                {{ paper.authors_str }}
+            </p>
+
+            <p class="abstract">
+                <b>Abstract: </b>
+                {{ paper.abstract }}
+            </p>
+
+            <hr>
+
         </div>
         {% endfor %}
-        <div class="version">
-            v{{ paper.version }}
-        </div>
-        </p>
-
-        <p class="authors">
-            <b>Authors: </b>
-            {{ paper.authors_html }}
-        </p>
-
-        <p class="abstract">
-            <b>Abstract: </b>
-            {{ paper.abstract }}
-        </p>
-
-        <hr>
-
     </div>
     {% endfor %}
 </div>

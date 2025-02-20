@@ -26,10 +26,12 @@ data_dir = Path('data')
 
 @dataclass
 class Paper:
+    link: any = ''
     title: any = ''
     tags: any = ''
     version: any = ''
     authors: any = ''
+    authors_str: any = ''
     abstract: any = ''
 
 
@@ -42,7 +44,7 @@ def send_email(recipient_email, subscription_preferences, sender_email, sender_p
     all_possible_tags = [x[0] for x in subjects]
     all_possible_subjects = [x[1] for x in subjects]
 
-    papers = []
+    papers_subjects = {}
     for subj in subscription_preferences:
 
         # Goes from math.AG -> Algebraic Geometry
@@ -53,8 +55,12 @@ def send_email(recipient_email, subscription_preferences, sender_email, sender_p
         Feed = feedparser.parse(rss_url)
         entries = Feed.entries
 
+        papers = []
         for entry in entries:
             paper = Paper()
+
+            # Get the link
+            paper.link = entry.link
 
             # Get the title
             paper.title = str(entry.title)
@@ -78,6 +84,9 @@ def send_email(recipient_email, subscription_preferences, sender_email, sender_p
 
             papers.append(paper)
 
+        papers_subjects[subj_title] = papers
+
+
     import smtplib
     from email.mime.multipart import MIMEMultipart
     from email.mime.text import MIMEText
@@ -94,7 +103,7 @@ def send_email(recipient_email, subscription_preferences, sender_email, sender_p
         output_path="",
         template_data={
             "date": today.strftime("%B %d, %Y"),
-            "papers": papers,
+            "papers_subjects": papers_subjects,
         },
     )
 
