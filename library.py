@@ -22,13 +22,15 @@ template_dir = Path('template')
 
 @dataclass
 class Paper:
-    link: any = ''
     title: any = ''
     tags: any = ''
     version: any = ''
     authors: any = ''
     authors_str: any = ''
     abstract: any = ''
+    abs_link: any = ''
+    html_link: any = ''
+    pdf_link: any = ''
 
 
 def renderer(subscription_preferences):
@@ -55,9 +57,6 @@ def renderer(subscription_preferences):
         for entry in entries:
             paper = Paper()
 
-            # Get the link
-            paper.link = entry.link
-
             # Get the title
             paper.title = str(entry.title)
 
@@ -77,6 +76,11 @@ def renderer(subscription_preferences):
 
             # Get the abstract
             paper.abstract = str(entry.summary).split('Abstract: ')[1]
+
+            # Get the link
+            paper.abs_link = entry.link
+            paper.html_link = entry.link.replace('abs', 'html')
+            paper.pdf_link = entry.link.replace('abs', 'pdf')
 
             papers.append(paper)
 

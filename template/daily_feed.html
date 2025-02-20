@@ -16,43 +16,40 @@
         /* Body Styling */
         body {
             font-family: Arial, sans-serif;
-            font-size: 16px;
+            font-size: 1rem;
             line-height: 1.6;
             background-color: #f4f4f4;
             color: #333;
-            padding: 20px;
-            max-width: 1200px;
+            padding: 1rem;
+            max-width: 80rem;
             margin: auto;
         }
 
         /* Banner Styling */
         .banner {
             width: 100%;
-            font-size: 20px;
+            font-size: 1rem;
             color: #F4F2F3;
             text-align: center;
-            padding: 20px 0;
+            padding: 0.5rem 0;
             background-color: #515c5d;
             border-radius: 20px;
-            margin-bottom: 30px;
+            margin-bottom: 1rem;
         }
 
         .banner h1 {
             width: 75%;
             display: inline-block;
-            margin: 10px;
         }
 
         .banner h2 {
-            font-size: 1.2em;
             color: #7f8c8d;
-            margin-top: 10px;
+            margin-top: 0.5rem;
         }
 
         /* Text Color Styling */
         p {
             color: #2B303A;
-            margin-bottom: 15px;
         }
 
         .colored {
@@ -71,12 +68,12 @@
 
         /* Tag Styles */
         .tag {
+            font-size: 0.7rem;
             display: inline-block;
             color: white;
             border-radius: 8px;
-            padding: 6px;
-            font-size: 14px;
-            margin: 3px;
+            padding: 0.1rem;
+            margin: 0.1rem;
         }
 
         /* Individual Tag Background Colors */
@@ -92,29 +89,32 @@
             background-color: #575757;
         }
 
+        .link {
+            font-size: 0.8rem;
+        }
+
         /* Subject Section Styles */
         .subject_title {
-            font-size: 22px;
+            font-size: 1.4rem;
             color: #984447;
             text-align: center;
-            margin: 15px 0;
-            border-bottom: 3px solid #984447;
-            padding-bottom: 5px;
+            margin: 1rem 0;
+            border-bottom: 0.25rem solid #984447;
+            padding-bottom: 0.25rem;
         }
 
         /* Paper Styling */
         .paper {
             background-color: white;
-            margin: 20px 0;
-            padding: 20px;
+            margin: 1rem 0;
+            padding: 1rem;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .paper_title {
-            font-size: 1.8em;
+            font-size: 1.2rem;
             color: #2c3e50;
-            margin-bottom: 12px;
         }
 
         .paper_title a {
@@ -126,53 +126,14 @@
             text-decoration: underline;
         }
 
-        /* Responsive Layout Adjustments */
-        @media (max-width: 768px) {
-            .banner h1 {
-                font-size: 18px;
-            }
-
-            .paper {
-                padding: 15px;
-                margin: 15px 0;
-            }
-
-            .tag {
-                font-size: 12px;
-                padding: 4px;
-            }
-
-            .subject_title {
-                font-size: 18px;
-            }
-
-            .paper_title {
-                font-size: 1.4em;
-            }
-        }
-
-        /* Additional Space Adjustments for Mobile */
-        @media (max-width: 480px) {
-            body {
-                padding: 10px;
-            }
-
-            .banner {
-                padding: 15px 0;
-            }
-
-            .subject_title {
-                font-size: 16px;
-            }
-
-            .paper_title {
-                font-size: 1.2em;
-            }
-
-            .tag {
-                font-size: 10px;
-                padding: 3px;
-            }
+        .glass {
+            /* From https://css.glass */
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
     </style>
 </head>
@@ -193,27 +154,26 @@
             {{ subject }}
         </h2>
         {% for paper in papers %}
-        <div class="paper">
+        <div class="paper glass">
             <p class="paper_title">
-                <b>Title: </b>
-                <a href="{{ paper.link }}" target="_blank">
+                <a href="{{ paper.abs_link }}" target="_blank">
                     {{ paper.title }}
                 </a>
             </p>
 
             <p class="tags">
                 <b>Tags: </b>
-                <div class="tag tag_primary">
+                <span class="tag tag_primary">
                     {{ paper.tags[0] }}
-                </div>
+                </span>
                 {% for tag_secondary in paper.tags[1:] %}
-                <div class="tag tag_secondary">
+                <span class="tag tag_secondary">
                     {{ tag_secondary }}
-                </div>
+                </span>
                 {% endfor %}
-                <div class="tag version">
+                <span class="tag version">
                     v{{ paper.version }}
-                </div>
+                </span>
             </p>
 
             <p class="authors">
@@ -225,6 +185,20 @@
                 <b>Abstract: </b>
                 {{ paper.abstract }}
             </p>
+
+            <p class="link">
+                <b>Link: </b>
+                <a href="{{ paper.abs_link }}" target="_blank">
+                    Abstract
+                </a>
+                <a href="{{ paper.pdf_link }}" target="_blank">
+                    PDF
+                </a>
+                <a href="{{ paper.html_link }}" target="_blank">
+                    HTML
+                </a>
+            </p>
+
         </div>
         {% endfor %}
     </div>
