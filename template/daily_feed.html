@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Daily arXiv Feed</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="banner">
+    <h1>
+        Daily arXiv Feed
+    </h1>
+    <h2>
+        {{ date }}
+    </h2>
+</div>
+
+<br>
+<div id="body">
+    {% for paper in papers %}
+    <div class="paper">
+        <p>
+            <b>Title: </b>
+            <a class="paper_title" href="{{ entry.link }}">
+                {{ paper.title }}
+            </a>
+        </p>
+
+        <p class="tags">
+            <b>Tags: </b>
+        <div class="tag_primary">
+            {{ paper.tags[0] }}
+        </div>
+        {% for tag_secondary in paper.tags[1:] %}
+        <div class="tag_secondary">
+            {{ tag_secondary }}
+        </div>
+        {% endfor %}
+        <div class="version">
+            v{{ paper.version }}
+        </div>
+        </p>
+
+        <p class="authors">
+            <b>Authors: </b>
+            {{ paper.authors_html }}
+        </p>
+
+        <p class="abstract">
+            <b>Abstract: </b>
+            {{ paper.abstract }}
+        </p>
+
+        <hr>
+
+    </div>
+    {% endfor %}
+</div>
+</body>
+</html>
