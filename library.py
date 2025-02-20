@@ -43,18 +43,22 @@ def renderer(subscription_preferences):
     all_possible_subjects = [x[1] for x in subjects]
 
     papers_subjects = {}
-    for subj in subscription_preferences:
+    for subject_primary, subjects_secondary in subscription_preferences.items():
 
         # Goes from math.AG -> Algebraic Geometry
-        subj_index = all_possible_tags.index(subj)
+        subj_index = all_possible_tags.index(subject_primary)
         subj_title = all_possible_subjects[subj_index]
 
-        rss_url = f"http://rss.arxiv.org/rss/{subj}"
+        rss_url = f"http://rss.arxiv.org/rss/{subject_primary}"
         Feed = feedparser.parse(rss_url)
         entries = Feed.entries
 
         papers = []
         for entry in entries:
+            common = set(entry.tags) & set(subjects_secondary)
+            if not common:
+                continue
+
             paper = Paper()
 
             # Get the title
