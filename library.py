@@ -6,6 +6,7 @@
 
 import csv
 import feedparser
+import bionic_writer
 from jinja2 import Template
 from datetime import date
 from pathlib import Path
@@ -79,6 +80,7 @@ def renderer(subscription_preferences):
 
             # Get the abstract
             paper.abstract = str(entry.summary).split('Abstract: ')[1]
+            paper.abstract = bionic_writer.write(text=paper.abstract, affix="<b>", postfix="</b>")
 
             # Get the link
             paper.abs_link = entry.link

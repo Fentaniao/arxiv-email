@@ -15,7 +15,7 @@
 
         /* Body Styling */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             font-size: 1rem;
             line-height: 1.6;
             background-color: #f4f4f4;
@@ -91,6 +91,10 @@
 
         .link {
             font-size: 0.8rem;
+        }
+
+        .bionic b {
+            font-weight: 500;
         }
 
         /* Subject Section Styles */
@@ -182,7 +186,9 @@
 
             <p class="abstract">
                 <b>Abstract: </b>
-                {{ paper.abstract }}
+                <span class="bionic">
+                    {{ paper.abstract }}
+                </span>
             </p>
 
             <p class="link">
