@@ -6,7 +6,6 @@
 
 import csv
 import feedparser
-import bionic_writer
 from jinja2 import Template
 from datetime import date
 from pathlib import Path
@@ -62,9 +61,10 @@ def renderer(subscription_preferences):
             # Get the primary tag (note that entry.tags is a list)
             # The API convention, from what I can understand, lists the primary posting as the first tag
             paper.tags = [tag.term for tag in entry.tags]
-            common = set(paper.tags) & set(subjects_secondary)
-            if not common:
-                continue
+            if subjects_secondary is not []:
+                common = set(paper.tags) & set(subjects_secondary)
+                if not common:
+                    continue
 
             # Get the title
             paper.title = str(entry.title)
@@ -80,7 +80,6 @@ def renderer(subscription_preferences):
 
             # Get the abstract
             paper.abstract = str(entry.summary).split('Abstract: ')[1]
-            paper.abstract = bionic_writer.write(text=paper.abstract, affix="<b>", postfix="</b>")
 
             # Get the link
             paper.abs_link = entry.link

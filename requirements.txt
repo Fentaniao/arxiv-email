@@ -1,4 +1,3 @@
-bionic_writer
 feedparser
 datetime
 python-dotenv

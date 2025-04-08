@@ -39,5 +39,5 @@ jobs:
         env: 
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
-          RECIPIENTS: ${{ vars.RECIPIENTS }}
+          FREELOADERS: ${{ vars.FREELOADERS }}
         run: python daily_runner.py
