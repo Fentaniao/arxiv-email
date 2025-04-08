@@ -26,8 +26,7 @@ This bot aggregates the newest content from arXiv and delivers it directly to yo
         - `GMAIL_PASSWORD` – The app password for that Gmail account.
 
     - **Repository Variables:**
-      -
-      `FREELOADERS` – The email address(es) where you will receive your arXiv subscriptions and your subscriptions subjects.
+      - `FREELOADERS` – The email address(es) where you will receive your arXiv subscriptions and your subscriptions subjects.
 
 And you're good to go!
 
